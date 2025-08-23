@@ -11,7 +11,7 @@ Users can add **top and bottom text** and download the final meme.
 
 ## 🛠️ Setup
 ```bash
-git clone https://github.com/your-username/meme-generator.git
+git clone https://github.com/priyacha123/Meme-Generator.git
 cd meme-generator
 npm install
 npm run dev
