@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { TailwindcssButtons } from "../../components/ui/download-button";
 
 export default function Main() {
     const [meme, setMeme] = useState({
@@ -59,6 +60,8 @@ export default function Main() {
                 <span className="top">{meme.topText}</span>
                 <span className="bottom">{meme.bottomText} </span>
             </div>
+            <TailwindcssButtons href={meme.imageUrl} topText={meme.topText} bottomText={meme.bottomText}  />
+
         </main>
     )
 }
