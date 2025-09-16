@@ -42,6 +42,7 @@ main {
 }
 
 .form input {
+   
     width: 100%;
     margin-top: 5px;
     border-radius: 5px;
@@ -105,4 +106,9 @@ main {
 
 .top {
     top: 0;
+}
+.file{
+display:inline-block;
+/* color: #711F8D; */
+background-color: #672280;
 }

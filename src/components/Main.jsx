@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState,useRef } from "react"
 import { TailwindcssButtons } from "../../components/ui/download-button";
 
 export default function Main() {
     const [meme, setMeme] = useState({
-        topText: "One does not simply",
-        bottomText: "Walk into Mordor",
-        imageUrl: "http://i.imgflip.com/1bij.jpg"
+        topText: " ",
+        bottomText: " ",
+        imageUrl: " "
     })
     const [allMemes, setAllMeme] = useState([])
 
@@ -23,6 +23,7 @@ export default function Main() {
             imageUrl: randomMeme,
         }))
     }
+    const fileInputRef = useRef(null);
     function handleChange(event) {
         const {value, name} = event.currentTarget;
         setMeme(prev => ({
@@ -30,7 +31,25 @@ export default function Main() {
             [name]: value,
         }))
     }
+    function handleUpload(event){
+        const file = event.target.files[0];
+        if(file){
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                  setMeme(prev => ({
+            ...prev,
+            imageUrl: reader.result,
+        }))
+            }
+            reader.readAsDataURL(file)
+        }
 
+    }
+    const handleImageUpload= (event) => {
+        event.preventDefault();//prevents the default behaviour when page reloads.
+        fileInputRef.current.click();
+        
+    }
      return (
         <main>
             <div className="form">
@@ -54,6 +73,9 @@ export default function Main() {
                     />
                 </label>
                 <button onClick={getMeme}>Get a new meme image 🖼</button>
+                <input type="file" name="file" placeholder="Create a meme" ref={fileInputRef}  onChange={handleUpload}  hidden/>
+                <button type="submit" onClick={handleImageUpload}>Create meme</button>
+  
             </div>
             <div className="meme">
                 <img src={meme.imageUrl} />
